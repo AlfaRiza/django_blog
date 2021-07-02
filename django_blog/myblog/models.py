@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 from django.urls import reverse
+from tinymce.models import HTMLField
 
 
 class Author(models.Model):
@@ -16,6 +17,7 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
+    content = HTMLField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(null=True, blank=True)

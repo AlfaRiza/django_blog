@@ -12,6 +12,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def blog(request):
-    # blog = get_object_or_404(Post, id = blog_id)
-    return render(request, 'blog.html')
+def blog(request, blog_id):
+    blog = get_object_or_404(Post, id=blog_id)
+    context = {
+        'blog': blog
+    }
+    return render(request, 'blog.html', context)
