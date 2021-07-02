@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('blog/<int:blog_id>', views.blog, name='blog'),
     path('tinymce/', include('tinymce.urls')),
+    path('categories/<str:cats>/', views.categoryView, name='categories'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

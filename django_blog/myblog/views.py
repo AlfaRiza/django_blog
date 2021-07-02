@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def index(request):
     queryset = Post.objects.all().order_by('date')
+    categories = Category.objects.all().order_by('id')
     paginator = Paginator(queryset, 2)
     page_number = request.GET.get('page')
     try:
@@ -19,6 +20,7 @@ def index(request):
     context = {
         'queryset': queryset,
         'data': data,
+        'categories': categories,
     }
     return render(request, 'index.html', context)
 
@@ -29,3 +31,14 @@ def blog(request, blog_id):
         'blog': blog
     }
     return render(request, 'blog.html', context)
+
+
+def categoryView(request, cats):
+    category_post = Post.objects.filter(categories__title__contains=cats)
+    categories = Category.objects.all()
+    context = {
+        'cats': cats,
+        'category_post': category_post,
+        'categories': categories,
+    }
+    return render(request, 'categories.html', context)

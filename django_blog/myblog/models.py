@@ -14,10 +14,18 @@ class Author(models.Model):
         return self.user.username
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     content = HTMLField()
+    categories = models.ManyToManyField(Category)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(null=True, blank=True)
@@ -30,3 +38,4 @@ class Post(models.Model):
         return reverse('blog', kwargs={
             'blog_id': self.id
         })
+

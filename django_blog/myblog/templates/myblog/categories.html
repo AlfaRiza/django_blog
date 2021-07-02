@@ -7,7 +7,7 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+                    <h1 class="fw-bolder">{{cats}} Category</h1>
                     <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
                 </div>
             </div>
@@ -17,17 +17,21 @@
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
-                    {% for obj in data %}
-                        <div class="card mb-4">
-                            <a href="{{ obj.thumbnail.url }}"><img class="card-img-top" src="{{ obj.thumbnail.url }}" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">{{ obj.date|timesince }}</div>
-                                <h2 class="card-title">{{ obj.title }}</h2>
-                                <p class="card-text">{{ obj.description }}</p>
-                                <a class="btn btn-primary" href="blog/{{  obj.id }}">Read more →</a>
+                    {% if category_post %}
+                        {% for obj in category_post %}
+                            <div class="card mb-4">
+                                <a href="{{ obj.thumbnail.url }}"><img class="card-img-top" src="{{ obj.thumbnail.url }}" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">{{ obj.date|timesince }}</div>
+                                    <h2 class="card-title">{{ obj.title }}</h2>
+                                    <p class="card-text">{{ obj.description }}</p>
+                                    <a class="btn btn-primary" href="blog/{{  obj.id }}">Read more →</a>
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <h2 class="card-title">Belum ada post</h2>
+                    {% endif %}
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
@@ -64,7 +68,7 @@
                                 <div class="col-sm-12">
                                     <ul class="list-unstyled mb-0">
                                         {% for cat in categories %}
-                                        <li><a href="{% url 'categories' cat %}">{{ cat }}</a></li>
+                                        <li><a href="{% url 'categories' cat.title %}">{{ cat.title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
