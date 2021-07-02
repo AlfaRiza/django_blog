@@ -24,7 +24,7 @@
                                 <div class="small text-muted">{{ obj.date|timesince }}</div>
                                 <h2 class="card-title">{{ obj.title }}</h2>
                                 <p class="card-text">{{ obj.description }}</p>
-                                <a class="btn btn-primary" href="{{ obj.get_absolute_url }}">Read more →</a>
+                                <a class="btn btn-primary" href="blog/{{  obj.id }}">Read more →</a>
                             </div>
                         </div>
                     {% endfor %}
