@@ -23,7 +23,8 @@ from myblog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('blog/<int:blog_id>', views.blog, name='blog'),
+    path('blog/<int:blog_id>/', views.blog, name='blog'),
+    path('result_search', views.search, name='search'),
     path('tinymce/', include('tinymce.urls')),
     path('categories/<str:cats>/', views.categoryView, name='categories'),
 ]
