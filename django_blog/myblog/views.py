@@ -3,6 +3,7 @@ from .models import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .form import CommentForm, PostForm
 from django.db.models import Q
+from django.views.generic import CreateView
 
 
 # Create your views here.
@@ -131,3 +132,10 @@ def categoryView(request, cats):
         'categories': categories,
     }
     return render(request, 'categories.html', context)
+
+
+class addCategoryView(CreateView):
+    model = Category
+    template_name = 'add_category.html'
+    fields = '__all__'
+

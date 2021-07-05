@@ -8,6 +8,15 @@ class TinyMCEWidget(TinyMCE):
         return False
 
 
+# class AddCategoryForm(forms.ModelForm):
+#     content = forms.CharField(
+#     )
+#
+#     class Meta:
+#         model = Category
+#         fields = ['title', 'content']
+
+
 class PostForm(forms.ModelForm):
     content = forms.CharField(
         widget=TinyMCEWidget(
