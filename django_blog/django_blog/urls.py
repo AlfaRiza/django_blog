@@ -29,6 +29,7 @@ urlpatterns = [
     path('add_category', views.addCategoryView.as_view(), name='add_category'),
     path('create', views.blog_create, name='blog_create'),
     path('result_search', views.search, name='search'),
+    path('accounts/', include('allauth.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('categories/<str:cats>/', views.categoryView, name='categories'),
 ]

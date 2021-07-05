@@ -40,7 +40,7 @@
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-
+                                {% if request.user.is_authenticated %}
                                 <form method="POST" action="." class="mb-4">
                                     {% csrf_token %}
                                     {{ form }}
@@ -48,6 +48,9 @@
                                         <button type="submit" class="btn btn-primary">Kirim</button>
                                     </div>
                                 </form>
+                                {% else %}
+                                <a href="{% url 'account_login' %}" class="btn btn-primary">Login to comment</a>
+                                {% endif %}
                                 <!-- Comment with nested comments-->
                                 <!-- Single comment-->
                                 {% for comment in blog.get_comments %}
