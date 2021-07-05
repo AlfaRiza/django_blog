@@ -14,8 +14,12 @@
                             <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on {{ blog.date|timesince }} by {{ blog.author }}</div>
+                            <div class="text-muted fst-italic mb-2">
+                                <a href="{% url 'blog_update' blog_id=blog.id %}">Update</a>
+                                <a href="{% url 'blog_delete' blog.id %}">Delete</a>
+                            </div>
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{blog.category.title}}</a>
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
@@ -82,20 +86,14 @@
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
+                                        {% for cat in categories %}
+                                        <li><a href="{% url 'categories' cat %}">{{ cat }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
+
                             </div>
                         </div>
                     </div>
